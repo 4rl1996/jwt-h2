@@ -8,7 +8,7 @@ public class KeyGenerator {
 
     public static void main(String[] args) {
         System.out.println(
-                Encoders.BASE64.encode(Keys.secretKeyFor(SignatureAlgorithm.HS256).getEncoded())
+                Encoders.BASE64.encode(Keys.secretKeyFor(SignatureAlgorithm.HS512).getEncoded())
         );
     }
 }

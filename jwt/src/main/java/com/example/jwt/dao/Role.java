@@ -1,4 +1,4 @@
-package com.example.jwt.dao.entity;
+package com.example.jwt.dao;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

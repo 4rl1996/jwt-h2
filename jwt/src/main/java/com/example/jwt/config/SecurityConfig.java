@@ -16,6 +16,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
+    private final TokenFilter tokenFilter;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
@@ -25,10 +27,10 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests(
                         authz -> authz
-                                .antMatchers("/entry/**").permitAll()
+                                 .antMatchers("/entry/login").permitAll()
                                 .anyRequest().authenticated()
-//                                .and()
-//                                .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                                .and()
+                                .addFilterAfter(tokenFilter, UsernamePasswordAuthenticationFilter.class)
                 ).build();
     }
 

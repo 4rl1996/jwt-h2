@@ -1,0 +1,37 @@
+package com.example.jwt.service.impl;
+
+import com.example.jwt.dao.entity.UserEntity;
+import com.example.jwt.data.JwtRequest;
+import com.example.jwt.data.JwtResponse;
+import com.example.jwt.exception.AuthException;
+import com.example.jwt.service.AuthService;
+import com.example.jwt.service.TokenService;
+import com.example.jwt.service.UserService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class AuthServiceImpl implements AuthService {
+
+    private final UserService userService;
+    private final TokenService tokenService;
+
+    @Override
+    public JwtResponse login(JwtRequest authRequest) {
+        final UserEntity user = userService.getByUsername(authRequest.getUsername());
+        if (user.getPassword().equals(authRequest.getPassword())) {
+            final String accessToken = tokenService.generateToken(user);
+            return new JwtResponse(accessToken);
+        } else {
+            throw new AuthException("Invalid username/password value");
+        }
+    }
+
+    @Override
+    public void logout() {
+
+    }
+}

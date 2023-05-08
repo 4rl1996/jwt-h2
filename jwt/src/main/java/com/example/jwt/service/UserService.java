@@ -4,5 +4,5 @@ import com.example.jwt.dao.entity.UserEntity;
 
 public interface UserService {
 
-    UserEntity getByEmail(String email);
+    UserEntity getByUsername(String username);
 }
