@@ -1,5 +1,6 @@
 package com.example.jwt.config;
 
+import com.example.jwt.exception.JwtExampleExceptionHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,14 +22,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .httpBasic().disable()
-                .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .httpBasic().disable() // отключаем basic-auth
+                .csrf().disable() // отключаем csrf
+                .cors().disable() // отключаем cors
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // не создается и не хранится сессия
                 .and()
                 .authorizeHttpRequests(
                         authz -> authz
-                                 .antMatchers("/entry/login").permitAll()
-                                .anyRequest().authenticated()
+                                .antMatchers("/entry/login").permitAll() // на эту ручку могут сходить все
+                                .anyRequest().authenticated() // остальные ручки закрыты
                                 .and()
                                 .addFilterAfter(tokenFilter, UsernamePasswordAuthenticationFilter.class)
                 ).build();

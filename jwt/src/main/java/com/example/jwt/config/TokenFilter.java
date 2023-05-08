@@ -2,7 +2,7 @@ package com.example.jwt.config;
 
 import com.example.jwt.data.JwtAuthentication;
 import com.example.jwt.service.TokenService;
-import com.example.jwt.util.keyGenerator.jwtUtil.JwtUtils;
+import com.example.jwt.util.jwtUtil.JwtUtils;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,16 +30,22 @@ public class TokenFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain fc)
             throws IOException, ServletException {
-        final String token = getTokenFromRequest((HttpServletRequest) request);
-        if (token != null && tokenService.validateAccessToken(token)) {
+        final String token = getTokenFromRequest((HttpServletRequest) request);// достаем токен из header
+        if (token != null && tokenService.validateAccessToken(token)) { // проверяем наличие токена и валидируем его
             final Claims claims = tokenService.getClaims(token);
-            final JwtAuthentication jwtInfoToken = JwtUtils.generate(claims);
-            jwtInfoToken.setAuthenticated(true);
+            final JwtAuthentication jwtInfoToken = JwtUtils.generate(claims); // собираем объект, чтобы положить в контекст
+            jwtInfoToken.setAuthenticated(true); // отмечаем как аутентифицированный
             SecurityContextHolder.getContext().setAuthentication(jwtInfoToken);
         }
         fc.doFilter(request, response);
     }
 
+    /**
+     * Получаем токен из хедера "Authorization"
+     *
+     * @param request содержит токен в хедере
+     * @return jwt-токен
+     */
     private String getTokenFromRequest(HttpServletRequest request) {
         final String bearer = request.getHeader(AUTHORIZATION);
         if (StringUtils.hasText(bearer) && bearer.startsWith("Bearer ")) {

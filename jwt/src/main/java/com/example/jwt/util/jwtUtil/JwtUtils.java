@@ -1,4 +1,4 @@
-package com.example.jwt.util.keyGenerator.jwtUtil;
+package com.example.jwt.util.jwtUtil;
 
 import com.example.jwt.dao.Role;
 import com.example.jwt.data.JwtAuthentication;

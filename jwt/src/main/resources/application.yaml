@@ -1,6 +1,5 @@
 spring:
   datasource:
-#    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false;
     url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver
     username: sa
@@ -10,4 +9,5 @@ spring:
     defer-datasource-initialization: true #включаем, чтобы сначала накатилась схема хибернейта, а потом пролились данные в H2
 
 token:
-  secret: StAEoZTA2JmETEKTmcMArV+jDcqy+ijyZDFjcMIlpF8JvxxNNOvSnU9Z+aZdvIuRvhuA7UrpanQF/lxHuHvoXg==
+  secret: StAEoZTA2JmETEKTmcMArV+jDcqy+ijyZDFjcMIlpF8JvxxNNOvSnU9Z+aZdvIuRvhuA7UrpanQF/lxHuHvoXg== # ключ для токена
+  alg: HS512 # условный white-list для алгоритма шифрования

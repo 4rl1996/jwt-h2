@@ -21,17 +21,12 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public JwtResponse login(JwtRequest authRequest) {
-        final UserEntity user = userService.getByUsername(authRequest.getUsername());
-        if (user.getPassword().equals(authRequest.getPassword())) {
-            final String accessToken = tokenService.generateToken(user);
+        final UserEntity user = userService.getByUsername(authRequest.getUsername()); // ищем юзера в нашей БД
+        if (user.getPassword().equals(authRequest.getPassword())) { // сверяем пароли
+            final String accessToken = tokenService.generateToken(user); // собираем токен
             return new JwtResponse(accessToken);
         } else {
             throw new AuthException("Invalid username/password value");
         }
-    }
-
-    @Override
-    public void logout() {
-
     }
 }
