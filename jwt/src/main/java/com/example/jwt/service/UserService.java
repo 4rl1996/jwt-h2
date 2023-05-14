@@ -6,6 +6,7 @@ public interface UserService {
 
     /**
      * Получить юзера из БД
+     *
      * @param username параметр запроса
      * @return сущность из БД
      */

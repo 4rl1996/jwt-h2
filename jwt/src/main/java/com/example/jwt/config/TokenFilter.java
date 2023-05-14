@@ -2,7 +2,7 @@ package com.example.jwt.config;
 
 import com.example.jwt.data.JwtAuthentication;
 import com.example.jwt.service.TokenService;
-import com.example.jwt.util.jwtUtil.JwtUtils;
+import com.example.jwt.util.jwtServiceUtil.JwtUtils;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

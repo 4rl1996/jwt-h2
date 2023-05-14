@@ -1,8 +1,7 @@
-package com.example.jwt.util.jwtUtil;
+package com.example.jwt.util.jwtServiceUtil;
 
 import com.example.jwt.dao.Role;
 import com.example.jwt.data.JwtAuthentication;
-import com.fasterxml.jackson.core.type.TypeReference;
 import io.jsonwebtoken.Claims;
 import lombok.experimental.UtilityClass;
 
