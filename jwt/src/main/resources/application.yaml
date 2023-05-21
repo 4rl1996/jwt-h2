@@ -4,12 +4,15 @@ spring:
     host: "smtp.yandex.ru"
     port: 465
     username: "nrh9@yandex.ru"
-    password: "dckzammsyinnmufi"
+    password: ${ya_pass}
     protocol: "smtps"
     properties.mail.smtp:
       auth: true
 #      starttls.enable: true
       ssl.trust: "smtp.yandex.ru"
+  h2:
+    tcp:
+      enabled: true
   datasource:
     url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver
@@ -22,3 +25,8 @@ spring:
 token:
   secret: StAEoZTA2JmETEKTmcMArV+jDcqy+ijyZDFjcMIlpF8JvxxNNOvSnU9Z+aZdvIuRvhuA7UrpanQF/lxHuHvoXg== # ключ для токена
   alg: HS512 # условный white-list для алгоритма шифрования
+
+bot:
+  token: ${bot_token}
+  chat: -933719856
+  baseUrl: https://api.telegram.org/bot${bot_token}/sendMessage

@@ -1,6 +1,7 @@
 package com.example.jwt.service;
 
 import com.example.jwt.dao.entity.UserEntity;
+import com.example.jwt.data.RegistrationRequest;
 
 public interface UserService {
 
@@ -11,4 +12,12 @@ public interface UserService {
      * @return сущность из БД
      */
     UserEntity getByUsername(String username);
+
+    UserEntity addCandidate(RegistrationRequest registrationRequest);
+
+    UserEntity addHr(RegistrationRequest registrationRequest);
+
+    void deleteEmployee(String username);
+
+    UserEntity addManager(RegistrationRequest registrationRequest);
 }

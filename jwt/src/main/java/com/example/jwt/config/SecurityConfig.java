@@ -30,8 +30,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests(
                         authz -> authz
-                                .antMatchers("/entry/login/**").permitAll()// на эту ручку могут сходить все
-                                .antMatchers("/mail").permitAll()
+                                .antMatchers("/entry/**", "/mail").permitAll()// на эту ручку могут сходить все
                                 .anyRequest().authenticated() // остальные ручки закрыты
                                 .and()
                                 .addFilterAfter(tokenFilter, UsernamePasswordAuthenticationFilter.class)

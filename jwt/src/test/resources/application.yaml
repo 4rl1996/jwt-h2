@@ -11,3 +11,18 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true #включаем, чтобы сначала накатилась схема хибернейта, а потом пролились данные в H2
+  mail:
+    default-encoding: UTF-8
+    host: "smtp.yandex.ru"
+    port: 465
+    username: "nrh9@yandex.ru"
+    password: ${ya_pass}
+    protocol: "smtps"
+    properties.mail.smtp:
+      auth: true
+      #      starttls.enable: true
+      ssl.trust: "smtp.yandex.ru"
+bot:
+  token: stub
+  chat: stub
+  baseUrl: stub
